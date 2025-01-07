@@ -57,6 +57,28 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+
+  const handleEditBook = async (data: BookFormData) => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`/api/books/${bookToEdit?.id}`, {
+        method: "PUT",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Livre non modifier");
+      }
+      setBookToEdit(undefined);
+      await fetchBooks();
+    } catch (error) {
+      console.error(`Erreur pour la modification ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <>
       <h1>Test du html</h1>
