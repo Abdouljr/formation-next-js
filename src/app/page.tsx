@@ -79,9 +79,102 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+
+  const openEditModal = (book: Book) => {
+    setBookToEdit(book);
+    setIsModalOpen(true);
+  };
+
   return (
-    <>
-      <h1>Test du html</h1>
-    </>
+    <div className="min-h-screen bg-gray-100 py-8">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-500">
+            Gestions des stocks -librairie
+          </h1>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="px-6 py-2 5 bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-600 transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50"
+            disabled={isLoading}
+          >
+            Ajouter un livre
+          </button>
+        </div>
+        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-100">
+              <thead className="bg-gray-200">
+                <tr>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                    Titre
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                    Auteur
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                    Réference
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                    Prix unitaire
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                    Stock
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-300 bg-white">
+                {books.length > 0 ? (
+                  books.map((book) => (
+                    <tr
+                      key={book.id}
+                      className="hover:bg-gray-200 transition-all duration-300"
+                    >
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {book.titre}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {book.auteur}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {book.reference}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {book.prix}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        <span
+                          className={`inline-flex rounded-full px-2 text-xs font-semibold leading-5 ${
+                            book.stock <= 5
+                              ? "bg-red-100 text-red-800"
+                              : book.stock <= 10
+                              ? "bg-yellow-100 text-yellow-800"
+                              : "bg-green-100 text-green-800"
+                          }`}
+                        >
+                          {book.stock}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      colSpan={6}
+                      className="text-center text-xl font-bold py-4 text-gray-600"
+                    >
+                      {" "}
+                      Aucun livre disponible
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
