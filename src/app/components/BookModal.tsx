@@ -96,6 +96,109 @@ export default function BookModal({
               </p>
             )}
           </div>
+          <div>
+            <label
+              htmlFor="auteur"
+              className="block text-sm font-semibold text-gray-700 mb-1"
+            >
+              Auteur
+            </label>
+            <input
+              type="text"
+              id="auteur"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 outline-none focus:ring-2 focus:ring-indigo-500  transition-all focus:border-transparent"
+              value={formData.auteur}
+              onChange={(e) =>
+                setFormData({ ...formData, auteur: e.target.value })
+              }
+            />
+            {erorrs.auteur && (
+              <p>
+                <span className="text-red-500 mt-1 text-sm">
+                  {erorrs.auteur}
+                </span>
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor="reference"
+              className="block text-sm font-semibold text-gray-700 mb-1"
+            >
+              Réference
+            </label>
+            <input
+              type="text"
+              id="reference"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 outline-none focus:ring-2 focus:ring-indigo-500  transition-all focus:border-transparent"
+              value={formData.reference}
+              onChange={(e) =>
+                setFormData({ ...formData, reference: e.target.value })
+              }
+            />
+            {erorrs.reference && (
+              <p>
+                <span className="text-red-500 mt-1 text-sm">
+                  {erorrs.reference}
+                </span>
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor="prix"
+              className="block text-sm font-semibold text-gray-700 mb-1"
+            >
+              Prix unitaire (en cfa)
+            </label>
+            <input
+              type="number"
+              id="prix"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 outline-none focus:ring-2 focus:ring-indigo-500  transition-all focus:border-transparent"
+              value={formData.prix}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  prix: e.target.value === "" ? 0 : parseInt(e.target.value),
+                })
+              }
+            />
+            {erorrs.prix && (
+              <p>
+                <span className="text-red-500 mt-1 text-sm">{erorrs.prix}</span>
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label
+              htmlFor="stock"
+              className="block text-sm font-semibold text-gray-700 mb-1"
+            >
+              Stock
+            </label>
+            <input
+              type="number"
+              id="stock"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 outline-none focus:ring-2 focus:ring-indigo-500  transition-all focus:border-transparent"
+              value={formData.stock}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  stock: e.target.value === "" ? 0 : parseInt(e.target.value),
+                })
+              }
+            />
+            {erorrs.stock && (
+              <p>
+                <span className="text-red-500 mt-1 text-sm">
+                  {erorrs.stock}
+                </span>
+              </p>
+            )}
+          </div>
         </form>
       </div>
     </div>
