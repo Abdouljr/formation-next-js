@@ -2,6 +2,7 @@
 
 import { Book, BookFormData } from "@/types/types";
 import { useEffect, useState } from "react";
+import BookModal from "./components/BookModal";
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [books, setBooks] = useState<Book[]>([]);
@@ -157,6 +158,20 @@ export default function Home() {
                           {book.stock}
                         </span>
                       </td>
+                      <td className="px-6 py-4 whitespace-nonwrap text-sm">
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => openEditModal(book)}
+                            className="px-3 py-1 5 bg-blue-600 text-white font-medium text-xs rounded-lg hover:bg-blue-700 transition-all duration-300 disabled:opacity-50"
+                            disabled={isLoading}
+                          ></button>
+                          <button
+                            onClick={() => handleDeleteBook(book.id)}
+                            className="px-3 py-1 5 bg-red-600 text-white font-medium text-xs rounded-lg hover:bg-red-700 transition-all duration-300 disabled:opacity-50"
+                            disabled={isLoading}
+                          ></button>
+                        </div>
+                      </td>
                     </tr>
                   ))
                 ) : (
@@ -165,7 +180,6 @@ export default function Home() {
                       colSpan={6}
                       className="text-center text-xl font-bold py-4 text-gray-600"
                     >
-                      {" "}
                       Aucun livre disponible
                     </td>
                   </tr>
@@ -174,6 +188,15 @@ export default function Home() {
             </table>
           </div>
         </div>
+        <BookModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(true);
+            setBookToEdit(undefined);
+          }}
+          onSubmit={bookToEdit ? handleEditBook : handleAddBook}
+          bookToEdit={bookToEdit}
+        />
       </div>
     </div>
   );
