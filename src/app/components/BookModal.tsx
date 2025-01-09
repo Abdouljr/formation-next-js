@@ -30,6 +30,8 @@ export default function BookModal({
         prix: bookToEdit.prix,
         stock: bookToEdit.stock,
       });
+    } else {
+      setFormData(initialFormData);
     }
   }, [bookToEdit, isOpen]);
 
@@ -61,9 +63,7 @@ export default function BookModal({
     }
   };
 
-  if (!isOpen) {
-    return null;
-  }
+  if (!isOpen) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4">
       <div className="bg-white rounded-xl p-8 w-full max-w-md shadow-2xl">
@@ -120,7 +120,6 @@ export default function BookModal({
               </p>
             )}
           </div>
-
           <div>
             <label
               htmlFor="reference"
@@ -145,7 +144,6 @@ export default function BookModal({
               </p>
             )}
           </div>
-
           <div>
             <label
               htmlFor="prix"
@@ -171,7 +169,6 @@ export default function BookModal({
               </p>
             )}
           </div>
-
           <div>
             <label
               htmlFor="stock"
@@ -198,6 +195,21 @@ export default function BookModal({
                 </span>
               </p>
             )}
+          </div>
+          <div className="mt-8 flex justify-end space-x-3">
+            <button
+              type="button"
+              className="px-6 py-2.5 text-sm font-semibold text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-300 transition-all duration-300"
+              onClick={handleClose}
+            >
+              Annuler
+            </button>
+            <button
+              type="submit"
+              className="px-6 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-all duration-200"
+            >
+              {bookToEdit ? "Modifier" : "Ajouter"}
+            </button>
           </div>
         </form>
       </div>

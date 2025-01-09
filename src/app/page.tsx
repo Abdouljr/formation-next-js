@@ -19,10 +19,9 @@ export default function Home() {
       const data = await response.json();
       setBooks(data);
     } catch (error) {
-      console.error("Une erreur de recupération", error);
+      console.error("Erreur lors du chargement des livres:", error);
     }
   };
-
   const handleAddBook = async (data: BookFormData) => {
     setIsLoading(true);
     try {
@@ -53,7 +52,7 @@ export default function Home() {
 
       await fetchBooks();
     } catch (error) {
-      console.error("Erreur de suppression");
+      console.error(`Erreur de suppression ${error}`);
     } finally {
       setIsLoading(false);
     }
@@ -143,7 +142,7 @@ export default function Home() {
                         {book.reference}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {book.prix}
+                        {book.prix} Fcfa
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm">
                         <span
@@ -164,12 +163,16 @@ export default function Home() {
                             onClick={() => openEditModal(book)}
                             className="px-3 py-1 5 bg-blue-600 text-white font-medium text-xs rounded-lg hover:bg-blue-700 transition-all duration-300 disabled:opacity-50"
                             disabled={isLoading}
-                          ></button>
+                          >
+                            Modifier
+                          </button>
                           <button
                             onClick={() => handleDeleteBook(book.id)}
                             className="px-3 py-1 5 bg-red-600 text-white font-medium text-xs rounded-lg hover:bg-red-700 transition-all duration-300 disabled:opacity-50"
                             disabled={isLoading}
-                          ></button>
+                          >
+                            supprimer
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -191,7 +194,7 @@ export default function Home() {
         <BookModal
           isOpen={isModalOpen}
           onClose={() => {
-            setIsModalOpen(true);
+            setIsModalOpen(false);
             setBookToEdit(undefined);
           }}
           onSubmit={bookToEdit ? handleEditBook : handleAddBook}

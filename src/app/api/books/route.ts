@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const books = prisma.book.findMany();
-    return NextResponse.json(books, { status: 200 });
+    const books = await prisma.book.findMany();
+    return NextResponse.json(books);
   } catch (error) {
     return NextResponse.json(
       { error: `Erreur pour la recupération des books ${error}` },

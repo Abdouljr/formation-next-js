@@ -17,10 +17,10 @@ export const bookSchema = yup.object({
     .number()
     .required("Le prix est obligatoire")
     .integer("Le prix doit être un entier")
-    .min(0, "Le prix doit être supérieur ou égal à 0"),
+    .min(100, "Le prix doit être supérieur à 99"),
   stock: yup
     .number()
     .required("Le prix est obligatoire")
     .integer("Le prix doit être un entier")
-    .min(0, "Le prix doit être supérieur ou égal à 0"),
+    .min(1, "Le prix doit être supérieur à 0"),
 });
