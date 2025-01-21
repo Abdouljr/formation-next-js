@@ -1,7 +1,14 @@
+import Header from "@/components/navbar/header";
+
 type props = {
   children: React.ReactNode;
 };
 
 export default function layout({ children }: props) {
-  return <div>{children}</div>;
+  return (
+    <div className="min-h-screen w-full">
+      <Header></Header>
+      {children}
+    </div>
+  );
 }
