@@ -8,7 +8,6 @@ export default function layout({ children }: props) {
   return (
     <div className="min-h-screen w-full">
       <Header></Header>
-
       {children}
     </div>
   );
