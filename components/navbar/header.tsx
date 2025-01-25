@@ -87,7 +87,6 @@ const Header = () => {
           </SheetContent>
         </Sheet>
       </div>
-
       <nav className="hidden lg:flex items-center space-x-6">
         <NavigationMenu>
           <NavigationMenuList>

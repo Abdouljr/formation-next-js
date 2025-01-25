@@ -1,3 +1,4 @@
+import Footer from "@/components/navbar/footer";
 import Header from "@/components/navbar/header";
 
 type props = {
@@ -9,6 +10,7 @@ export default function layout({ children }: props) {
     <div className="min-h-screen w-full">
       <Header></Header>
       {children}
+      <Footer></Footer>
     </div>
   );
 }
