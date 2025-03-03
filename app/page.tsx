@@ -2,6 +2,7 @@ import {Button} from "@/components/ui/button";
 import Banner from "@/app/_components/Banner";
 import {AccordionComponent} from "@/app/_components/AccordionComponent";
 import {AlertComponent} from "@/app/_components/AlertComponent";
+import AlertDialogComponent from "@/app/_components/AlertDialogComponent";
 
 export default function Home() {
   return (
@@ -13,9 +14,8 @@ export default function Home() {
                 <h3 className="text-xl font-semibold pb-4">Accordion Component</h3>
                 <AccordionComponent/>
             </div>
-            <div className="my-10">
                 <AlertComponent />
-            </div>
+                <AlertDialogComponent/>
         </div>
 
     </div>

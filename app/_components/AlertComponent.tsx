@@ -8,7 +8,7 @@ import {
 
 export function AlertComponent() {
     return (
-        <div className="flex flex-col lg:flex-row gap-4 ">
+        <div className="flex flex-col lg:flex-row gap-4 my-10">
             <Alert>
                 <Terminal className="h-4 w-4" />
                 <AlertTitle>Terminal !</AlertTitle>
